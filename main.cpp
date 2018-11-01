@@ -1,141 +1,60 @@
 #include <iostream>
-#include <vector>
+#include "matrix.h"
+
 
 using namespace std;
 
-class Pet
-{
-public:
-    Pet();
-    virtual void printDescription(){};
-    string name;
-    bool neuterSpayed;
-    bool talks;
-
-    void setname(string c ){
-        name =c;
-
-    }
-    string getname(){
-        return name;
-    }
-
-    void setNeuterSayed ( bool x )
-    {
-        neuterSpayed = x;
-    }
-    bool getNeuterSayed ( )
-    {
-        return neuterSpayed ;
-    }
-
-};
 
 
-Pet::Pet() : neuterSpayed(false), talks(false)
-{ }
-
-class cat : public Pet
-{
-public:
-    void printDescription()
-    {
-        string NS = "true";
-        if ( neuterSpayed == false ) NS = "False";
-        cout << "Name of cat    :  " << this->name << endl
-             << "Nspayed of cat :  " << NS << endl;
-    }
-};
-class dog : public Pet
-{
-public:
-    void printDescription()
-    {
-        string NS = "true";
-        if ( neuterSpayed == false ) NS = "False";
-        cout << "Name of dog    :  " << this->name << endl
-             << "Nspayed of dog :  " << NS << endl;
-    }
-};
-class bird  : public Pet
-{
-public:
-    void printDescription()
-    {
-        string talksSTR = "true";
-        if ( talks == false ) talksSTR = "False";
-        cout << "Name of bird    :  " << this->name << endl
-             << "talk  :  " << talksSTR << endl;
-    }
-};
 
 
 int main()
 {
+    int data1 [] = {1,2,3,4,5,6,7,8};
+    int data2 [] = {13,233,3,4,5,6};
+    int data3 [] = {10,100,10,100,10,100,10,100};
+    int data4 [] = {1,0,0,0,1,0,0,0,1};
 
-    vector < Pet* > vec;
 
-    int loop;
-    cout << "Enter num of animal :  "<<endl;
-    cin >> loop;
+    matrix mat1 (4, 2, data1, mat1);
+    matrix mat2 (2, 3, data2, mat2);
+    matrix mat3(4, 2, data3, mat3);
+    matrix mat4 (3,3,data4,mat4);
 
-    for ( int i = 0; i < loop; i++ )
-    {
-        int type;
-        cout << "  if your pet is cat enter number (0)  "<<endl<< "if your pet is dog  enter number (1)"<<endl<< "if your pet is bird enter number (2) "<<endl;
-        cin >> type;
+    cout<< "Matrix 1 is :"<< endl;
+    cout << mat1 << endl;
+    cout<< "Matrix 2 is :"<< endl;
+    cout << mat2 << endl;
+   // cout<< "Matrix 3 is :"<< endl;
+   // cout << mat3 << endl;
+  //  cout<< "Matrix 4 is :"<< endl;
+   // cout<< mat4<< endl;
+///cout<< "The addition of two matrices 3 and 3 is : " << endl<< (mat1 += mat3) << endl;
+     /// cout<< "opp-= is : " << endl<< (mat1 -= mat3) << endl;
 
-        if ( type == 0 )
-        {
-            Pet* object = new cat();
+ ///cout <<" mat1-- is =  " <<endl<<(mat1--)<<endl;
+/// cout <<" mat1++ is =  " <<endl<<(mat1++)<<endl;
+/// cout << (mat2+=1)<<endl;
+///cout << (mat2-=1)<<endl;
 
-            string catname;
-            cout<< "what's name your cat ? "<<endl;
-             cin >> catname;
-            object->setname( catname );
 
-            bool NScat;
-            cout<< " if your cat neture spayed enter number (1) "<<endl<< " if your cat not netuer spayed  enter number (0) "<<endl;
-             cin >> NScat;
-            object->setNeuterSayed(NScat);
-            vec.push_back( object );
-        }
-        else if ( type == 1 )
-        {
-            Pet* object = new dog();
 
-            string dogname;
-            cout<< "what's name your dog ? "<<endl;
-             cin >> dogname;
-            object->setname( dogname );
+  /// cout << "The addition of two matrices 1 and 3 is :" << endl<< (mat1 + mat3) << endl;
+  ///cout << "The addition of two matrices 3 and 3 is :" << endl<< (mat3 + mat3) << endl;
+  /// cout << "The differance of two matrices is :"        << endl<< (mat3 - mat1) << endl;
+  /// cout<< "Addition scalar is :"       << endl << mat1.operator+(2) << endl;
+  ///cout<< "Diffirance scalar is :"     << endl << mat1.operator-(1) << endl;
+  ///cout<< "Multiplication scalar is :" << endl << mat1.operator*(2) << endl;
 
-            bool NSdog;
-            cout<< "if your dog neture spayed enter number (1) "<<endl<< "if your dog not netuer spayed  enter number (0)"<<endl;
-            cin >> NSdog;
-            object->setNeuterSayed(NSdog);
-            vec.push_back( object );
-        }
-        else if ( type == 2 )
-        {
-            Pet* object = new cat();
 
-            string birdname;
-            cout<< "what's name your bird ? "<<endl;
-             cin >> birdname;
-            object->setname( birdname );
 
-cout<< "if your bird can talk enter number (1) "<<endl<< "if your bird can not talk enter number (0)"<<endl;
+  ///cout << (mat1 == mat3)<< endl;
+///cout<< (mat1!= mat3)<<endl ;
+//cout << isSymetric(mat4)<<endl;
+// cout<< "identity = "<< endl << isIdentity(mat4) <<endl;
+//cout<< "squ = "<<endl<< isSquare (mat1)<<endl;
+//cout<< "trasnpose =  "<<endl<< transpose(mat5) ;
 
-            cin >> object->talks;
-            vec.push_back( object );
-        }
-
-    }
-
-    for ( int i = 0; i < vec.size(); i++ )
-    {
-        vec[i]->printDescription();
-    }
 
     return 0;
 }
